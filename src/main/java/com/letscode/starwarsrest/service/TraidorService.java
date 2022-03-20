@@ -80,8 +80,6 @@ public class TraidorService {
 
                 traidorToSave.setRebelde(rebelde);
 
-                traidorToSave.setId(1);
-
                 return traidorRepository.save(traidorToSave);
             }
 

@@ -1,5 +1,6 @@
 package com.letscode.starwarsrest.model;
 
+import com.letscode.starwarsrest.dto.TradeDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Traidor {
 
     @ManyToOne()
     private Rebelde traidor;
+
 
 
 }

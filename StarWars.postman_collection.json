@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "c07d9454-1768-4421-a9f3-ce7566014cb6",
+		"name": "StarWars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Rebelde",
+			"item": [
+				{
+					"name": "getRebeldes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getRebeldeById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "addRebelde",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"teste\",\r\n    \"age\":5,\r\n    \"race\":\"RAKATA\",\r\n    \"geoId\":{\r\n        \"latitude\": 12,\r\n        \"longitude\": 15,\r\n        \"galaxyName\": \"testeGalaxia\"\r\n\r\n    },\r\n    \"inventoryId\":{\r\n        \"gun\": 5,\r\n        \"ammo\": 2,\r\n        \"water\": 1,\r\n        \"food\": 4\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rebelde",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editRebelde",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"teste\",\r\n    \"age\":5,\r\n    \"race\":\"RAKATA\",\r\n    \"geoId\":{\r\n        \"latitude\": 12,\r\n        \"longitude\": 15,\r\n        \"galaxyName\": \"testeGalaxia\"\r\n\r\n    },\r\n    \"inventoryId\":{\r\n        \"gun\": 5,\r\n        \"ammo\": 2,\r\n        \"water\": 1,\r\n        \"food\": 4\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rebelde/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "getLocationById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"latitude\": 13,\r\n    \"longitude\": 14,\r\n    \"galaxyName\": \"teste update\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/location/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"location",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negociar",
+			"item": [
+				{
+					"name": "getAllInvenotries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trade"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tradeItens",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"gun\":1,\r\n    \"idRebelde\":1\r\n},\r\n{\r\n    \"food\":4,\r\n    \"idRebelde\":2\r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trade"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET inventory by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Traidor",
+			"item": [
+				{
+					"name": "addTraidor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTraidor\": 1,\r\n    \"nome\":\"lucas\",\r\n    \"idRebelde\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/traidor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"traidor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "porcentagem Traidores",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Porcentagem Rebeldes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Media dos itens do inventário",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Pontos perdidos por traidores",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

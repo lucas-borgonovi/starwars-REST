@@ -58,18 +58,22 @@ public class TradeServiceTest {
         Mockito.when(tradeRepository.save(rebelde)).thenReturn(rebelde);
         Mockito.when(tradeRepository.save(rebelde2)).thenReturn(rebelde2);
 
+        Inventory trade1 = InventoryUtil.createInventoryTrade(1);
+        Inventory trade2 = InventoryUtil.createInventoryTrade(2);
 
-        TradeDTO[] tradeDTOS =  tradeService.tradeItens(rebelde,rebelde2,1,2);
+
+
+        TradeDTO[] tradeDTOS =  tradeService.tradeItens(trade1,trade2,1,2);
 
         Assertions.assertThat(tradeDTOS).isNotNull();
-        Assertions.assertThat(tradeDTOS[0].ammo()).isEqualTo(0);
-        Assertions.assertThat(tradeDTOS[0].gun()).isEqualTo(0);
-        Assertions.assertThat(tradeDTOS[0].water()).isEqualTo(0);
-        Assertions.assertThat(tradeDTOS[0].food()).isEqualTo(0);
-        Assertions.assertThat(tradeDTOS[1].ammo()).isEqualTo(tradeDTOArray[1].ammo());
-        Assertions.assertThat(tradeDTOS[1].gun()).isEqualTo(tradeDTOArray[1].gun());
-        Assertions.assertThat(tradeDTOS[1].food()).isEqualTo(tradeDTOArray[1].food());
-        Assertions.assertThat(tradeDTOS[1].water()).isEqualTo(tradeDTOArray[1].water());
+        Assertions.assertThat(tradeDTOS[0].ammo()).isEqualTo(1);
+        Assertions.assertThat(tradeDTOS[0].gun()).isEqualTo(4);
+        Assertions.assertThat(tradeDTOS[0].water()).isEqualTo(3);
+        Assertions.assertThat(tradeDTOS[0].food()).isEqualTo(4);
+        Assertions.assertThat(tradeDTOS[1].ammo()).isEqualTo(1);
+        Assertions.assertThat(tradeDTOS[1].gun()).isEqualTo(4);
+        Assertions.assertThat(tradeDTOS[1].food()).isEqualTo(4);
+        Assertions.assertThat(tradeDTOS[1].water()).isEqualTo(3);
 
 
 

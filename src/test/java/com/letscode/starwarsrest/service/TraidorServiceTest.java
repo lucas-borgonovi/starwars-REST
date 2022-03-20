@@ -9,7 +9,9 @@ import com.letscode.starwarsrest.repository.RebeldeRepository;
 import com.letscode.starwarsrest.repository.TraidorRepository;
 import com.letscode.starwarsrest.utils.RebeldeUtil;
 import com.letscode.starwarsrest.utils.TraidorUtil;
+import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -46,25 +48,34 @@ public class TraidorServiceTest {
 
         TraidorDTO traidorDTO = TraidorUtil.createTraidorDTO();
 
+        Rebelde rebelde = RebeldeUtil.createRebelde();
+        Rebelde traidor = RebeldeUtil.createTraidor();
+
+
         Mockito.when(rebeldeRepository.findById(traidorDTO.idRebelde()))
-                .thenReturn(Optional.of(RebeldeUtil.createRebelde()));
+                .thenReturn(Optional.of(rebelde));
         Mockito.when(rebeldeRepository.findById(traidorDTO.idTraidor()))
-                .thenReturn(Optional.of(RebeldeUtil.createTraidor()));
+                .thenReturn(Optional.of(traidor));
 
         Mockito.when(traidorRepository
                         .findTraidorByTraidorIdAndRebeldeId(traidorDTO.idTraidor(),traidorDTO.idRebelde()))
                 .thenReturn(null);
 
         Mockito.when(rebeldeService.getById(traidorDTO.idRebelde()))
-                .thenReturn(RebeldeUtil.createRebelde());
+                .thenReturn(rebelde);
 
         Mockito.when(rebeldeService.getById(traidorDTO.idTraidor()))
-                .thenReturn(RebeldeUtil.createTraidor());
+                .thenReturn(traidor);
 
 
-        Traidor traidorObject = TraidorUtil.createTraidorObject();
+        Traidor traidorToSave = Mockito.mock(Traidor.class);
 
-        Mockito.when(traidorRepository.save(traidorObject)).thenReturn(traidorObject);
+        traidorToSave.setTraidor(traidor);
+        traidorToSave.setRebelde(rebelde);
+
+        Mockito.when(traidorRepository.save(traidorToSave))
+                .thenReturn(TraidorUtil.createTraidorObject());
+
 
         Traidor traidorSaved = traidorService.addTraidor(traidorDTO);
 

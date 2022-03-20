@@ -17,6 +17,18 @@ public class InventoryUtil {
                 .build();
     }
 
+    public static Inventory createInventoryTrade(Integer id){
+        return Inventory.builder()
+                .id(id)
+                .ammo(1)
+                .gun(1)
+                .food(1)
+                .water(1)
+                .build();
+
+
+    }
+
 
     public static List<Inventory> createListInventories(){
 
