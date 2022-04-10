@@ -9,6 +9,7 @@ import com.letscode.starwarsrest.model.Inventory;
 import com.letscode.starwarsrest.service.TradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ public class TradeController {
 
     private final TradeMapper mapper;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<InventoryDTO>> getAllInventories(){
 
@@ -41,6 +43,7 @@ public class TradeController {
         return ResponseEntity.ok(mapper.inventoryToInventoryDTO(inventory));
     }
 
+    @PreAuthorize("hasRole('REBELDE')")
     @PutMapping()
     public ResponseEntity<List<TradeDTO>> tradeItens(@RequestBody @Valid TradeDTO[] listItens) throws TraidorException, TotalPointsNotEqual {
 

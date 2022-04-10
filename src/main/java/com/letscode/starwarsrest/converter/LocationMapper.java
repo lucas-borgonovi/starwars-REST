@@ -6,7 +6,8 @@ import lombok.Getter;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface LocationMapper {
+public interface
+LocationMapper {
 
     Location locationDTOToLocation(LocationDTO locationDTO);
 

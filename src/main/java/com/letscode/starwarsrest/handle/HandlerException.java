@@ -40,6 +40,11 @@ public class HandlerException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Error("Esse objeto não existe na base de dados"));
     }
 
+    @ExceptionHandler({ForbiddenAccess.class})
+    public ResponseEntity<Error> handlerForbiddenAccess(){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Error("Esse usuário não tem acesso."));
+    }
+
 
 
 }

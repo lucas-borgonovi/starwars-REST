@@ -1,5 +1,6 @@
 package com.letscode.starwarsrest.service;
 
+import com.letscode.starwarsrest.exception.ForbiddenAccess;
 import com.letscode.starwarsrest.model.Location;
 import com.letscode.starwarsrest.repository.LocationRepository;
 import com.letscode.starwarsrest.utils.LocationUtil;
@@ -43,7 +44,7 @@ public class LocationServiceTest {
 
 
     @Test
-    void checkUpdateSuccess(){
+    void checkUpdateSuccess() throws ForbiddenAccess {
 
         Location location = LocationUtil.createLocation();
         Location locationToUpdate =  LocationUtil.createLocation();

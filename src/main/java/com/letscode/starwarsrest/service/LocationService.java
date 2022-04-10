@@ -1,11 +1,20 @@
 package com.letscode.starwarsrest.service;
 
+import com.letscode.starwarsrest.exception.ForbiddenAccess;
+import com.letscode.starwarsrest.exception.ObjectNull;
 import com.letscode.starwarsrest.model.Location;
+import com.letscode.starwarsrest.model.Rebelde;
+import com.letscode.starwarsrest.model.Roles;
 import com.letscode.starwarsrest.repository.LocationRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -13,6 +22,8 @@ import java.util.Optional;
 public class LocationService {
 
     private final LocationRepository locationRepository;
+
+    private final RebeldeService rebeldeService;
 
 
     public Location getLocationById(Integer id){
@@ -26,27 +37,44 @@ public class LocationService {
     }
 
 
-    public Location updateLocation(Integer id, Location location){
+    public Location updateLocation(Integer id, Location location) throws ForbiddenAccess {
 
-        Location locationToUpdate = getLocationById(id);
+        Rebelde rebelde = rebeldeService.getByLocationId(id);
 
-        if(locationToUpdate != null){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = authentication.getName();
 
-            if(location.getGalaxyName() != null){
-                locationToUpdate.setGalaxyName(location.getGalaxyName());
-            }
-            if(location.getLongitude() != 0){
-                locationToUpdate.setLongitude(location.getLongitude());
-            }
-            if(location.getLatitude() != 0){
-                locationToUpdate.setLatitude(location.getLatitude());
-            }
+        var roles = authentication.getAuthorities();
+        var role = roles.stream().toArray()[0].toString().substring(5);
 
-            return locationRepository.save(locationToUpdate);
-
+        if(rebelde == null){
+            throw new ObjectNull();
         }
 
-        return null;
+        if(Objects.equals(currentUsername, rebelde.getUserLogin().getUsername())){
+
+            Location locationToUpdate = getLocationById(id);
+
+            if(locationToUpdate != null){
+
+                if(location.getGalaxyName() != null){
+                    locationToUpdate.setGalaxyName(location.getGalaxyName());
+                }
+                if(location.getLongitude() != 0){
+                    locationToUpdate.setLongitude(location.getLongitude());
+                }
+                if(location.getLatitude() != 0){
+                    locationToUpdate.setLatitude(location.getLatitude());
+                }
+
+                locationToUpdate.setUpdatedBy(Roles.valueOf(role));
+
+                return locationRepository.save(locationToUpdate);
+
+            }
+        }
+
+        throw new ForbiddenAccess();
 
     }
 

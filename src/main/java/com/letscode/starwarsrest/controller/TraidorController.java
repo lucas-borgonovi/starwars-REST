@@ -6,6 +6,7 @@ import com.letscode.starwarsrest.exception.SameRebeldeException;
 import com.letscode.starwarsrest.model.Traidor;
 import com.letscode.starwarsrest.service.TraidorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class TraidorController {
 
     private final TraidorService traidorService;
 
+    @PreAuthorize("hasRole('REBELDE')")
     @PostMapping
     public Traidor addTraidor(@RequestBody @Valid TraidorDTO traidor) throws SameRebeldeException, AutoReportException {
 

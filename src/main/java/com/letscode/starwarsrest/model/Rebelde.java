@@ -1,5 +1,6 @@
 package com.letscode.starwarsrest.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,6 +31,11 @@ public class Rebelde {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="inventory",referencedColumnName = "id")
     private Inventory inventory;
+
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Login userLogin;
 
 
 }

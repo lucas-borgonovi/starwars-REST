@@ -11,27 +11,95 @@
 				{
 					"name": "getRebeldes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsIlJvbGVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY0OTYzMjUxN30.qzeQxGHe2xbM4g38DQdlJGbKN6kLgpF8RETS9WI2vAdogVdzYYixA1F5MHQCGocg7arD5LFYfr_piDJRfNfYQw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rebelde?page=0&size=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "getRebeldeById",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "asdfasf",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "batman",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rebelde/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rebelde",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "addRebelde",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsIlJvbGVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY0OTYzMjAyMH0.gJQQLZfkgxet-Ug6weK7iv-F2RZh13e7gkZVYLBKU0LtN2Lm09sBKdPMwuyXiOj9S8oNWuajRKCBbrflNsPhPg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"teste\",\r\n    \"age\":5,\r\n    \"race\":\"RAKATA\",\r\n    \"geoId\":{\r\n        \"latitude\": 12,\r\n        \"longitude\": 15,\r\n        \"galaxyName\": \"testeGalaxia\"\r\n\r\n    },\r\n    \"inventoryId\":{\r\n        \"gun\": 5,\r\n        \"ammo\": 2,\r\n        \"water\": 1,\r\n        \"food\": 4\r\n    }\r\n\r\n}",
+							"raw": "{\r\n    \"name\":\"renato\",\r\n    \"age\":3,\r\n    \"race\":\"RAKATA\",\r\n    \"location\":{\r\n        \"latitude\": 12,\r\n        \"longitude\": 15,\r\n        \"galaxyName\": \"testeGalaxia\",\r\n        \"updatedBy\": \"ADMIN\"\r\n\r\n    },\r\n    \"inventory\":{\r\n        \"gun\": 3,\r\n        \"ammo\": 1,\r\n        \"water\": 1,\r\n        \"food\": 8\r\n    },\r\n    \"userLogin\":{\r\n       \"username\":\"renato\",\r\n       \"password\":\"123\",\r\n       \"roles\":\"REBELDE\" \r\n    }\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"teste\",\r\n    \"age\":5,\r\n    \"race\":\"RAKATA\",\r\n    \"geoId\":{\r\n        \"latitude\": 12,\r\n        \"longitude\": 15,\r\n        \"galaxyName\": \"testeGalaxia\"\r\n\r\n    },\r\n    \"inventoryId\":{\r\n        \"gun\": 5,\r\n        \"ammo\": 2,\r\n        \"water\": 1,\r\n        \"food\": 4\r\n    }\r\n\r\n}",
+							"raw": "{\r\n    \"name\":\"teste\",\r\n    \"age\":10,\r\n    \"race\":\"RAKATA\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,18 +158,30 @@
 					"name": "getLocationById",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/location/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"location",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "update Location",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"latitude\": 13,\r\n    \"longitude\": 14,\r\n    \"galaxyName\": \"teste update\"\r\n}",
+							"raw": "{\r\n    \"latitude\": 11,\r\n    \"longitude\": 17,\r\n    \"galaxyName\": \"teste\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,32 +209,13 @@
 			"name": "Negociar",
 			"item": [
 				{
-					"name": "getAllInvenotries",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/trade",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"trade"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "tradeItens",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[{\r\n    \"gun\":1,\r\n    \"idRebelde\":1\r\n},\r\n{\r\n    \"food\":4,\r\n    \"idRebelde\":2\r\n}]",
+							"raw": "[{\r\n    \"food\":8,\r\n    \"gun\":3,\r\n    \"ammo\":1,\r\n    \"water\":1,\r\n    \"idRebelde\":1\r\n},\r\n{\r\n    \"food\":8,\r\n    \"gun\":3,\r\n    \"ammo\":1,\r\n    \"water\":1,\r\n    \"idRebelde\":2\r\n}]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,14 +235,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "GET inventory by id",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
 				}
 			]
 		},
@@ -191,11 +244,26 @@
 				{
 					"name": "addTraidor",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "abc",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "batman",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idTraidor\": 1,\r\n    \"nome\":\"lucas\",\r\n    \"idRebelde\":2\r\n}",
+							"raw": "{\r\n    \"idRebelde\":1,\r\n    \"idTraidor\":2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -224,8 +292,35 @@
 				{
 					"name": "porcentagem Traidores",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "abc",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "batman",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/report/porcTraidores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"porcTraidores"
+							]
+						}
 					},
 					"response": []
 				},
@@ -233,7 +328,19 @@
 					"name": "Porcentagem Rebeldes",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/report/porcRebelde",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"porcRebelde"
+							]
+						}
 					},
 					"response": []
 				},
@@ -241,7 +348,19 @@
 					"name": "Media dos itens do inventário",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/report/mediaIventario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"mediaIventario"
+							]
+						}
 					},
 					"response": []
 				},
@@ -249,7 +368,113 @@
 					"name": "Pontos perdidos por traidores",
 					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/report/pontosPerdidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"pontosPerdidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "GET",
 						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create user ADMIN",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"teste\",\r\n    \"password\":\"123\",\r\n    \"role\": \"ADMIN\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/loginCriado/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loginCriado",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventories",
+			"item": [
+				{
+					"name": "GET inventory by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trade/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trade",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllInvenotries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trade"
+							]
+						}
 					},
 					"response": []
 				}
